@@ -38,7 +38,23 @@ function App () {
   else {
     return (
       <div className="App">
-        {myData.data}
+        
+        {myData && (
+          <div align={'center'} justify={'center'} className={'row-2'}>
+              <div className={'weather-result'}>
+                <h3>{myData.name.toUpperCase()}</h3>
+                <p>Temperature: {myData.main.temp} degC</p>
+                <p>Feels like: {myData.main.feels_like} degC</p>
+                <p>Humidity: {myData.main.humidity} %</p>
+                <div className='weather-icon-container'>
+                  <img className={'weather-icon'} src={`http://openweathermap.org/img/wn/${myData.weather[0].icon}.png`}></img>
+                </div>
+                <p>{myData.weather[0].main +': '+ myData.weather[0].description} </p>
+              </div>
+          </div>
+        )}
+
+
       </div>
     );
   }
