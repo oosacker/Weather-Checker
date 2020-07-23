@@ -15,7 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-css": "sass --watch src/input.scss src/output.css"
+    "build-css": "sass --watch styles/input.scss styles/output.css"
 
   },
   "eslintConfig": {

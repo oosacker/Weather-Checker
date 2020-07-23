@@ -1,0 +1,19 @@
+body {
+  background-image: url("/images/background-img-2.jpg");
+  font-family: Helvetica, sans-serif;
+  color: black;
+}
+
+.main-container .row-1, .main-container .row-2 {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px;
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.main-container .weather-icon-container {
+  text-align: center;
+}
+
+/*# sourceMappingURL=output.css.map */

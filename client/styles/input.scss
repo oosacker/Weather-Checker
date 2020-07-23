@@ -1,0 +1,42 @@
+$font-stack: Helvetica, sans-serif;
+$container-background-color: #92BDA3;
+$border-style: 1px solid black;
+$background-image: url("/images/background-img-2.jpg");
+
+
+
+@mixin border-styles(){
+    border: 1px solid black;;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px;
+}
+
+@mixin inner-container-background() {
+    background-color: rgba(255, 255, 255, 0.3);
+    
+}
+
+body{
+    background-image: $background-image;
+    font-family: $font-stack;
+    color: rgb(0, 0, 0);
+}
+
+.main-container{
+    .row-1, .row-2{
+        @include border-styles();
+        margin: 20px 0;
+        @include inner-container-background();
+    }
+
+    .weather-icon-container{
+        text-align: center;
+
+        // .weather-icon{
+        //     max-width: 10em;
+        //     height: auto;
+        // }
+    }
+
+}
