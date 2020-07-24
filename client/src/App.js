@@ -11,7 +11,12 @@ function App () {
   async function getData() {
     console.log('getData');
 
-    await fetch(`/get_data`)
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    await fetch(`/get_data`, requestOptions)
       .then(res => res.json())
       .then(
         result => {
@@ -19,11 +24,15 @@ function App () {
           console.log(result);
           setIsLoaded(true);
         },
-        error => {
-          alert(error)
-        }
+        // error => {
+        //   console.log('error');
+        //   setError(true);
+        //   alert(error);
+        // }
       )
       .catch (error => {
+        console.log('catch error');
+        setError(true);
         alert(error);
       })
   }
@@ -37,16 +46,35 @@ function App () {
   }
 
   const handleSubmit = (event) => {
-    getData();
+    //getData();
     event.preventDefault();
   }
 
+  const doPost = (input) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ city_name: input })
+    };
+
+    fetch('https://jsonplaceholder.typicode.com/posts', requestOptions)
+      .then(response => response.json())
+      .then(data => this.setState({ postId: data.id }));
+  }
+
+
+  
   if (!isLoaded) {
     console.log('Waiting');
     return (
       <div>Waiting...</div>
     )
   } 
+  else if(isError) {
+    return (
+      <div>Error</div>
+    )
+  }
   else {
     return (
       <Container className={'main-container'}>
