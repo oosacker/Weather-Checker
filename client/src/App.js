@@ -37,9 +37,47 @@ function App () {
       })
   }
 
-  useEffect(() => {
-    getData();
-  },[]);
+
+  useEffect( () => {
+
+    async function fetchWeather() {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({ 
+          'city_name': 'auckland' 
+        })
+      };
+
+      const response = await fetch('/get_weather', requestOptions);
+      const json = await response.json();
+      setWeather(json);
+      console.log(json);
+      console.log(weatherData);
+    }
+    
+  //   console.log('doPost');
+    
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ city_name: 'auckland' })
+  //   };
+
+  //   await fetch('/get_weather', requestOptions)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setWeather(data);
+  //       console.log(weatherData);
+  //     })
+  //     .catch(error => console.log(error));
+
+  // }
+
+    fetchWeather();
+  }, []);
 
   const handleChange = (event) => {
     setCity(event.target.value.toLowerCase());
@@ -50,20 +88,26 @@ function App () {
     event.preventDefault();
   }
 
-  const doPost = (input) => {
+  const doPost = (cityName) => {
+    console.log('doPost');
+    
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ city_name: input })
+      body: JSON.stringify({ city_name: 'auckland' })
     };
 
-    fetch('https://jsonplaceholder.typicode.com/posts', requestOptions)
+    fetch('/get_weather', requestOptions)
       .then(response => response.json())
-      .then(data => this.setState({ postId: data.id }));
+      .then(data => {
+        setWeather(data);
+        console.log(weatherData);
+      })
+      .catch(error => console.log(error));
   }
 
 
-  
+
   if (!isLoaded) {
     console.log('Waiting');
     return (
