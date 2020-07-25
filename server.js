@@ -25,52 +25,52 @@ let weatherData = null;
 let city = 'wellington';
 
 // test code
-const testarray = [
-  {
-    id: 0,
-    name: "natsuki",
-    age: 36
-  },
-  {
-    id: 1,
-    name: "bob",
-    age: 55
-  },
-  {
-    id: 2,
-    name: "andy",
-    age: 90
-  },
-];
+// const testarray = [
+//   {
+//     id: 0,
+//     name: "natsuki",
+//     age: 36
+//   },
+//   {
+//     id: 1,
+//     name: "bob",
+//     age: 55
+//   },
+//   {
+//     id: 2,
+//     name: "andy",
+//     age: 90
+//   },
+// ];
 
-app.get('/test', (req, res) => {
-  res.json(testarray);
-})
+// app.get('/test', (req, res) => {
+//   res.json(testarray);
+// })
 
 
-app.post('/post_test', (req, res) => {
-  console.log('Got body:', req.body);
-  console.log(req.body['username']);
-  // res.sendStatus(200);
-  res.send(req.body);
-});
+// app.post('/post_test', (req, res) => {
+//   console.log('Got body:', req.body);
+//   console.log(req.body['username']);
+//   // res.sendStatus(200);
+//   res.send(req.body);
+// });
 
 // create a GET route -- MUST BE MARKED async and await so you can until valid data is available!!
-app.get('/get_data', async (req, res) => {
+// app.get('/get_data', async (req, res) => {
 
-  await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
-    .then(response => {
-      return response.text();
-    })
-    .then(data => {
-      weatherData = JSON.parse(data);
-      console.log(weatherData);
-    })
-    .catch(err => console.log(err))
+//   await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+//     .then(response => {
+//       return response.text();
+//     })
+//     .then(data => {
+//       weatherData = JSON.parse(data);
+//       console.log(weatherData);
+//     })
+//     .catch(err => console.log(err))
 
-  console.log(req);
-  res.send(weatherData);
-});
+//   console.log(req);
+//   res.send(weatherData);
+// });
 
 
 app.post('/get_weather', async (req, res) => {

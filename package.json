@@ -9,7 +9,7 @@
     "dev": "nodemon index",
     "server": "node index.js",
     "client": "npm start --prefix client",
-    "concurrently": "concurrently \"npm run start\" \"npm run client\""
+    "concurrently": "concurrently \"nodemon index\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
