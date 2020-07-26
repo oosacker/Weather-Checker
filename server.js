@@ -19,24 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 let weatherData = null;
 let city = 'wellington';
 
-const cityData = require('./city.list.json');
-// console.log(cityData);
-
-const countryData = require('./countries.json');
-// console.log(countryData);
-
-app.get('/get_cities', async (req, res) => {
-  console.log('received city request');
-  console.log('Got body:', req.body);
-  res.send(cityData);
-})
-
-app.get('/get_countries', async (req, res) => {
-  console.log('received country request');
-  console.log('Got body:', req.body);
-  res.send(countryData);
-})
-
 app.post('/get_weather', async (req, res) => {
   console.log('received weather request');
   console.log('Got body:', req.body);
