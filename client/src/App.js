@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import { Container, Row, Col } from 'react-grid-system';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { makeStyles } from '@material-ui/core/styles';
 import './styles/output.css';
 
 function App () {
-  const [weatherData, setWeather] = useState({});
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [weatherData, setWeather] = useState(null);
   const [city, setCity] = useState('city');
   const [isError, setError] = useState(false);
   const [cityList, setCityList] = useState(null);
+  const [countryList, setCountryList] = useState(null);
 
   async function fetchWeather() {
     const requestOptions = {
@@ -20,12 +23,9 @@ function App () {
       .then(response => response.json())
       .then(data => {
         setWeather(data);
-        console.log(data);
-        setIsLoaded(true);
       })
       .catch(error => {
         setError(error);
-        console.log(error); 
       });
   }
 
@@ -41,8 +41,22 @@ function App () {
       });
   }
 
+
+  async function fetchCountries() {
+    await fetch('/get_countries')
+      .then(response => response.json())
+      .then(data => {
+        setCountryList(data);
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error); 
+      });
+  }
+
   useEffect( () => {
     fetchCities();
+    fetchCountries();
   }, []);
 
 
@@ -57,53 +71,56 @@ function App () {
   }
 
 
-  if (!isLoaded) {
-    console.log('Waiting');
-    return (
-      <Container className={'main-container'}>
-        <Row align={'center'} justify={'center'} className={'row-1'}>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor='city_input'>Enter city: </label>
-            <input id='city_input' type='input'  name='city' onChange={handleChange} size="50"/>
-            <input type="submit" value="Submit" />
-          </form>
-        </Row>
-      </Container>
-    )
-  } 
-  else if(isError) {
-    return (
-      <div>Error</div>
-    )
-  }
-  else {
-    return (
-      <Container className={'main-container'}>
-        <Row align={'center'} justify={'center'} className={'row-1'}>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor='city_input'>Enter city: </label>
-            <input id='city_input' type='input'  name='city' onChange={handleChange} size="50"/>
-            <input type="submit" value="Submit" />
-          </form>
-        </Row>
+if(countryList) {
 
-        {weatherData && (
-          <Row align={'center'} justify={'center'} className={'row-2'}>
-              <Container className={'weather-result'}>
-                <h3>{weatherData.name.toUpperCase()}</h3>
-                <p>Temperature: {weatherData.main.temp} degC</p>
-                <p>Feels like: {weatherData.main.feels_like} degC</p>
-                <p>Humidity: {weatherData.main.humidity} %</p>
-                <div className='weather-icon-container'>
-                  <img className={'weather-icon'} src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}></img>
-                </div>
-                <p>{weatherData.weather[0].main +': '+ weatherData.weather[0].description} </p>
-              </Container>
-          </Row>
-        )}
-      </Container>
-    );
-  }
+  return (
+    //  { code: 'AD', label: 'Andorra', phone: '376' },
+
+    <Autocomplete
+      id="country-select-demo"
+      style={{ width: 300 }}
+      options={ countryList }
+      autoHighlight
+      getOptionLabel={(option) => option.name}
+      renderOption={(option) => (
+
+        <>
+          { option.name } ({option.code})
+        </>
+
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Choose a country"
+          variant="outlined"
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: 'new-password', // disable autocomplete and autofill
+          }}
+        />
+      )}
+    />
+  )
+}
+
+else return (<h3>test</h3> )
+  // if(!cityList) {
+  //   return (
+  //     <Container className={'main-container'}>
+  //       <h3>Waiting...</h3>
+  //     </Container>
+  //   )
+  // }
+  // else {
+  //   return (
+  //     <Container className={'main-container'}>
+  //       <h3>Display data</h3>
+  //     </Container>
+      
+  //   )
+  // }
+
 };
 
 export default App;
