@@ -71,6 +71,11 @@ function App () {
   }
 
 
+  const handleCountrySelect = (event, value, reason)=> {
+    console.log(value.name);
+  }
+
+  
 if(countryList) {
 
   return (
@@ -83,11 +88,7 @@ if(countryList) {
       autoHighlight
       getOptionLabel={(option) => option.name}
       renderOption={(option) => (
-
-        <>
-          { option.name } ({option.code})
-        </>
-
+        <>{ option.name } ({option.code})</>
       )}
       renderInput={(params) => (
         <TextField
@@ -100,11 +101,12 @@ if(countryList) {
           }}
         />
       )}
+      onChange={handleCountrySelect}
     />
   )
 }
 
-else return (<h3>test</h3> )
+else return (<h3>wait</h3> )
   // if(!cityList) {
   //   return (
   //     <Container className={'main-container'}>
