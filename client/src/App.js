@@ -7,55 +7,9 @@ function App () {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState('city');
   const [isError, setError] = useState(false);
+  const [cityList, setCityList] = useState(null);
 
-  // async function getData() {
-  //   console.log('getData');
-
-  //   const requestOptions = {
-  //     method: 'GET',
-  //     headers: { 'Content-Type': 'application/json' },
-  //   };
-
-  //   await fetch(`/get_data`, requestOptions)
-  //     .then(res => res.text())
-  //     .then(
-  //       result => {
-  //         setWeather(result);
-  //         console.log(weatherData);
-  //         setIsLoaded(true);
-  //       },
-  //       // error => {
-  //       //   console.log('error');
-  //       //   setError(true);
-  //       //   alert(error);
-  //       // }
-  //     )
-  //     .catch (error => {
-  //       console.log('catch error');
-  //       setError(true);
-  //       alert(error);
-  //     })
-  // }
   async function fetchWeather() {
-    //   const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 
-    //       'Content-Type': 'application/json' 
-    //     },
-    //     body: JSON.stringify({ 
-    //       'city_name': 'okayama' 
-    //     })
-    //   };
-
-    //   const response = await fetch('/get_weather', requestOptions);
-    //   const json = await response.json();
-    //   setWeather(json);
-    //   console.log(json);
-    //   console.log(weatherData);
-    // }
-    
-  //   console.log('doPost');
-    
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -75,39 +29,32 @@ function App () {
       });
   }
 
+  async function fetchCities() {
+    await fetch('/get_cities')
+      .then(response => response.json())
+      .then(data => {
+        setCityList(data);
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error); 
+      });
+  }
 
   useEffect( () => {
-    //fetchWeather();
+    fetchCities();
   }, []);
+
 
   const handleChange = (event) => {
     setCity(event.target.value.toLowerCase());
   }
 
+
   const handleSubmit = (event) => {
-    fetchWeather();
-    
+    fetchWeather(); 
     event.preventDefault();
   }
-
-  // const doPost = (cityName) => {
-  //   console.log('doPost');
-    
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ city_name: 'auckland' })
-  //   };
-
-  //   fetch('/get_weather', requestOptions)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setWeather(data);
-  //       console.log(weatherData);
-  //     })
-  //     .catch(error => console.log(error));
-  // }
-
 
 
   if (!isLoaded) {
