@@ -20,31 +20,30 @@ let weatherData = null;
 let city = 'wellington';
 
 const cityData = require('./city.list.json');
-// console.log(cityData);
-
 const countryData = require('./countries.json');
-// console.log(countryData);
 
-app.get('/get_cities', async (req, res) => {
-  console.log('received city request');
-  console.log('Got body:', req.body);
-  res.send(cityData);
-})
 
-app.get('/get_countries', async (req, res) => {
+app.get('/get_countries', (req, res) => {
   console.log('received country request');
-  console.log('Got body:', req.body);
   res.send(countryData);
 })
+
+app.post('/get_cities', (req, res) => {
+  console.log('received city request');
+  console.log('code:', req.body.country_code);
+  let citiesInCountry = cityData.filter(city => city.country === req.body.country_code);
+  res.send(citiesInCountry);
+})
+
 
 app.post('/get_weather', async (req, res) => {
   console.log('received weather request');
   console.log('Got body:', req.body);
 
-  city = req.body['city_name'];
+  cityID = req.body['city_id'];
   console.log(city);
 
-  await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+  await fetch(`https://api.openweathermap.org/data/2.5/weather?id=${cityID}&units=metric&appid=${API_KEY}`)
     .then(response => {
       return response.text();
     })
