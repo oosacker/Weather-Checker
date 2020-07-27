@@ -99,7 +99,7 @@ const App = () => {
       <Container className={'title-box'}>
         <h1 className={'title'}>Weather Checker v2</h1>
         <h3 className={'sub-title'}>Natsuki Hasegawa, 2020</h3>
-        <p>A simple web app that demonstrates a Node.js/Express.js backend server and a React frontend. The backend fetches the weather data for the selected city from OpenWeatherMap's API. The backend itself also implements a RESTful API for the frontend interface. The data are transferred in JSON format.</p>
+        <p>A simple web app that demonstrates a Node.js/Express backend server and a React frontend. The backend fetches the weather data for the selected city from OpenWeatherMap's API. The backend itself also implements a RESTful API for the frontend interface.</p>
       </Container>
     
       <Container className={'selection-box'}>

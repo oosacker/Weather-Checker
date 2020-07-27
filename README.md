@@ -1,6 +1,6 @@
 # Weather Checker
 
-The weather data is read from OpenWeatherMap by the server using the fetch API. The server also has its own API endpoints for the React frontend. These are used to return data to the React frontend.
+## A simple web app that displays the weather of a specified city. 
 
 * Notes:
     * Stylesheets are in Sass format (configured in the package.json file)
