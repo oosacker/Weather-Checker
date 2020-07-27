@@ -6,14 +6,14 @@ $background-image: url("/images/background-img-2.jpg");
 
 
 @mixin border-styles(){
-    border: 1px solid black;;
+    border: 1px solid black;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 5px;
 }
 
 @mixin inner-container-background() {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.6);
     
 }
 
@@ -23,11 +23,19 @@ body{
     color: rgb(0, 0, 0);
 }
 
+
+
 .main-container{
+
+    .title-box{
+        text-shadow: 2px 2px 8px rgba(150, 150, 150, 1);
+    }
+
+    .city-name {
+        text-align: center;
+    }
+
     .row-1, .row-2{
-        // @include border-styles();
-        // margin: 20px 0;
-        // @include inner-container-background();
         padding: 10px 0;
     }
 

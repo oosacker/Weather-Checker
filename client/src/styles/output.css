@@ -4,6 +4,12 @@ body {
   color: black;
 }
 
+.main-container .title-box {
+  text-shadow: 2px 2px 8px #969696;
+}
+.main-container .city-name {
+  text-align: center;
+}
 .main-container .row-1, .main-container .row-2 {
   padding: 10px 0;
 }
@@ -13,7 +19,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 5px;
   margin: 20px 0;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .main-container .weather-icon-container {
   text-align: center;
