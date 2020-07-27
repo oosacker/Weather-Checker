@@ -25,6 +25,13 @@ body{
 
 .main-container{
     .row-1, .row-2{
+        // @include border-styles();
+        // margin: 20px 0;
+        // @include inner-container-background();
+        padding: 10px 0;
+    }
+
+    .selection-box, .weather-result{
         @include border-styles();
         margin: 20px 0;
         @include inner-container-background();
@@ -32,11 +39,6 @@ body{
 
     .weather-icon-container{
         text-align: center;
-
-        // .weather-icon{
-        //     max-width: 10em;
-        //     height: auto;
-        // }
     }
 
 }
