@@ -9,7 +9,8 @@
     "dev": "nodemon index",
     "server": "node index.js",
     "client": "npm start --prefix client",
-    "concurrently": "concurrently \"nodemon index\" \"npm run client\""
+    "concurrently": "concurrently \"nodemon index\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
