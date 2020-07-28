@@ -16,17 +16,17 @@ const App = () => {
   }, []);
 
   useEffect( () => {
-    console.log(`currentCountry`, currentCountry);
+    // console.log(`currentCountry`, currentCountry);
     fetchCities();
   }, [currentCountry]);
 
   useEffect( () => {
-    console.log(`currentCity`, currentCity);
+    // console.log(`currentCity`, currentCity);
     fetchWeather();
   }, [currentCity]);
 
   useEffect( () => {
-    console.log(`weatherData`, weatherData);
+    // console.log(`weatherData`, weatherData);
   }, [weatherData]);
 
 
@@ -80,7 +80,7 @@ const App = () => {
       setCurrentCountry(value);
     }
     else {
-      console.log('no country selected');
+      // console.log('no country selected');
     }
   }
 
@@ -89,7 +89,7 @@ const App = () => {
       setCurrentCity(value);
     }
     else {
-      console.log('no city selected');
+      // console.log('no city selected');
     }
   }
 
@@ -98,8 +98,8 @@ const App = () => {
 
       <Container className={'title-box'}>
         <h1 className={'title'}>Weather Checker v2</h1>
-        <h3 className={'sub-title'}>Natsuki Hasegawa, 2020</h3>
-        <p>A simple web app that demonstrates a Node.js/Express backend server and a React frontend. The backend fetches the weather data for the selected city from OpenWeatherMap's API. The backend itself also implements a RESTful API for the frontend interface.</p>
+        <h3 className={'sub-title'}><a href='https://www.linkedin.com/in/haseganats/'>Natsuki Hasegawa</a>, 2020</h3>
+        <p>A simple web app that demonstrates a Node.js/Express backend server and a React frontend. The backend fetches the current weather data for the selected city from OpenWeatherMap's <a href='https://openweathermap.org/current'>API</a>. The backend itself also implements a RESTful API for the frontend interface. Source code can be seen on <a href='https://github.com/oosacker/weather-checker'>GitHub</a>. The background image was taken in <a href='https://goo.gl/maps/Np3Uyzc9GBwEPzS67'>Prince of Wales Park</a>, Wellington, New Zealand.</p>
       </Container>
     
       <Container className={'selection-box'}>
@@ -133,8 +133,8 @@ const App = () => {
           <Row align={'center'} justify={'center'} className={'row-3'}>
             <Container className={'weather-result-inner'}>
               <h3 className={'city-name'}>{weatherData.name.toUpperCase()}</h3>
-              <p>Temperature: {weatherData.main.temp} degC</p>
-              <p>Feels like: {weatherData.main.feels_like} degC</p>
+              <p>Temperature: {weatherData.main.temp} °C</p>
+              <p>Feels like: {weatherData.main.feels_like} °C</p>
               <p>Humidity: {weatherData.main.humidity} %</p>
               <div className='weather-icon-container'>
                 <img 
