@@ -1,7 +1,7 @@
 $font-stack: Helvetica, sans-serif;
 $container-background-color: #92BDA3;
 $border-style: 1px solid black;
-$background-image: url("/images/background-img-2.jpg");
+$background-image: url("/images/background-img-3.jpg");
 
 
 
@@ -21,6 +21,12 @@ body{
     background-image: $background-image;
     font-family: $font-stack;
     color: rgb(0, 0, 0);
+    background-repeat: no-repeat;
+    background-size: auto;
+
+    // background-repeat: repeat;
+    // background-size: 100%;
+    // background-color: beige;
 }
 
 
@@ -47,6 +53,10 @@ body{
 
     .weather-icon-container{
         text-align: center;
+    }
+
+    .weather-result{
+        margin-bottom: 50px;
     }
 
 }

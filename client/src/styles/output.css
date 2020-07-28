@@ -1,7 +1,9 @@
 body {
-  background-image: url("/images/background-img-2.jpg");
+  background-image: url("/images/background-img-3.jpg");
   font-family: Helvetica, sans-serif;
   color: black;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 .main-container .title-box {
@@ -23,6 +25,9 @@ body {
 }
 .main-container .weather-icon-container {
   text-align: center;
+}
+.main-container .weather-result {
+  margin-bottom: 50px;
 }
 
 /*# sourceMappingURL=output.css.map */
