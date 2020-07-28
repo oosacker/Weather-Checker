@@ -2,6 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const moment = require('moment');
 const app = express();
+const path = require('path');
 
 require('dotenv').config();
 const API_KEY = process.env.WEATHER_API_KEY;
@@ -21,6 +22,9 @@ let city = 'wellington';
 
 const cityData = require('./city.list.json');
 const countryData = require('./countries.json');
+
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 app.get('/get_countries', (req, res) => {
